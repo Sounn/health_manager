@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  height: 1.5
+  weight: 1.5
+  proper_weight: 1.5
+  fat_percentage: 1.5
+  body_mass_index: 1.5
+  lean_body_mass: 1.5
+  mass_index: 1.5
+
+two:
+  height: 1.5
+  weight: 1.5
+  proper_weight: 1.5
+  fat_percentage: 1.5
+  body_mass_index: 1.5
+  lean_body_mass: 1.5
+  mass_index: 1.5
