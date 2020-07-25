@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_095648) do
+ActiveRecord::Schema.define(version: 2020_07_25_052004) do
+
+  create_table "bodies", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.float "height", null: false
+    t.float "weight", null: false
+    t.float "proper_weight"
+    t.float "fat_percentage"
+    t.float "body_mass_index"
+    t.float "lean_body_mass"
+    t.float "mass_index"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bodies_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
