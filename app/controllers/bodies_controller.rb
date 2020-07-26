@@ -10,23 +10,35 @@ class BodiesController < ApplicationController
   end
 
   def create
-    @body = Body.new(body_params)
-    set_current_user_id #bodyのuser_idをcurrent_userのidにする
-    if @body.valid?
-      @body.set_calculation_columns
-      @body.save!
+    body = Body.new(body_params)
+    body.write_attribute(:user_id, current_user.id)#bodyのuser_idをcurrent_userのidにする
+    if body.valid?
+      body.set_calculation_columns
+      body.save!
       redirect_to root_path
     else
       render 'new'
     end
   end
 
+  def edit
+    @body = Body.find(params[:id])
+  end
+
+  def update
+    body = Body.find(params[:id])
+    if body.valid?
+      body.assign_attributes(body_params)
+      body.set_calculation_columns
+      body.save
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+  end
+
   private
     def body_params
       params.require(:body).permit(:height,:weight,:fat_percentage)
-    end
-
-    def set_current_user_id
-      @body.user_id = current_user.id
     end
 end
