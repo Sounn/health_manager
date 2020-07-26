@@ -1,0 +1,7 @@
+<h1>計測結果を入力</h1>
+<%= form_for :body, url:bodies_create_path do |f| %>
+  身長(m):<br /><%= f.number_field :height, step: "0.01" %><br />
+  体重(kg):<br /><%= f.number_field :weight, step: "0.01" %><br />
+  体脂肪率(%):<br /><%= f.number_field :fat_percentage, step: "0.01" %><br />
+  <%= f.submit %>
+<% end %>
