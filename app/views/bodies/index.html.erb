@@ -1,0 +1,16 @@
+<h1>計測結果一覧</h1>
+  <%= link_to  "計測結果を入力", bodies_new_path %>
+<hr>
+<% @bodies.each do |b| %>
+<br />
+  日にち: <%= b.created_at %><br />
+  体重:　　<%= b.weight %>kg<br />
+  身長:　　<%= b.height %><br />
+  適正体重: <%= b.proper_weight %>kg<br />
+  体脂肪率: <%= b.fat_percentage %>%<br />
+  BMI: <%= b.body_mass_index %><br />
+  LBM: <%= b.lean_body_mass %><br />
+  LBMI: <%= b.mass_index %><br />
+<br />
+<hr>
+<% end %>
