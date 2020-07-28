@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root to: "bodies#index"
+  root to: "bodies#index_week"
   devise_for :users
   scope :bodies do
-    get 'index', to:'bodies#index', as:'bodies_index'
+    get 'index/week', to:'bodies#index_week', as:'bodies_week'
+    get 'index/month', to:'bodies#index_month', as:'bodies_month'
     get 'new', to:'bodies#new', as:'bodies_new'
     post 'create', to:'bodies#create',as:'bodies_create'
     get ':id/edit', to:'bodies#edit', as:'bodies_edit'

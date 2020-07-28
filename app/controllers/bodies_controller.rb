@@ -1,7 +1,10 @@
 class BodiesController < ApplicationController
   before_action :authenticate_user!
-  def index
-    @bodies = Body.where(user_id:current_user.id).order(created_at: :DESC )
+  def index_week
+    @bodies = Body.where(user_id:1).where('created_at >= ?',1.week.ago)   
+  end
+  def index_month
+    @bodies = Body.where(user_id:1).where('created_at >= ?',1.month.ago)
   end
 
   def new
