@@ -10,34 +10,64 @@ user = User.new( name: "tester", email: "test@test.test", password: "password")
 user.skip_confirmation!#メール認証をスキップ
 user.save!
 
-30.times do |i|
-  bd = Body.new(
-        user_id:1,
-        height:170.32,
-        weight:rand(64.00..65.00).round(2),
-        fat_percentage: rand(19.00..20.00).round(2),
-        created_at: DateTime.now - i
-      )
-  case i
-  when 0..10
-    bd.weight += 1
-    bd.fat_percentage += 1
-  when 11..20
-    bd.weight += 2
-    bd.fat_percentage += 2
-  when 21..25
-    bd.weight += 3
-    bd.fat_percentage += 4
-  when 26..30
-    bd.weight += 4
-    bd.fat_percentage += 4
-  end
-  #計算
-  bd.body_mass_index = (bd.weight/bd.height/bd.height*10000).round(2)        #BMI(ボディマス指数）,体重/身長^2,
-  bd.proper_weight = (bd.height**2*22/10000).round(2)                        #適性体重、身長^2*22
-  bd.lean_body_mass = (bd.weight*(100 - bd.fat_percentage)/100).round(2)     #LBM(除脂肪体重） 体重*(100-体脂肪率）/100
-  bd.mass_index = (bd.lean_body_mass/bd.height/bd.height*10000).round(2)     #LBMI(筋肉指数LBM/身長＾２
-  bd.save
+# 30.times do |i|
+#   bd = Body.new(
+#         user_id:1,
+#         height:170.32,
+#         weight:rand(64.00..65.00).round(2),
+#         fat_percentage: rand(19.00..20.00).round(2),
+#         created_at: DateTime.now - i
+#       )
+#   case i
+#   when 0..10
+#     bd.weight += 1
+#     bd.fat_percentage += 1
+#   when 11..20
+#     bd.weight += 2
+#     bd.fat_percentage += 2
+#   when 21..25
+#     bd.weight += 3
+#     bd.fat_percentage += 4
+#   when 26..30
+#     bd.weight += 4
+#     bd.fat_percentage += 4
+#   end
+#   #計算
+#   bd.body_mass_index = (bd.weight/bd.height/bd.height*10000).round(2)        #BMI(ボディマス指数）,体重/身長^2,
+#   bd.proper_weight = (bd.height**2*22/10000).round(2)                        #適性体重、身長^2*22
+#   bd.lean_body_mass = (bd.weight*(100 - bd.fat_percentage)/100).round(2)     #LBM(除脂肪体重） 体重*(100-体脂肪率）/100
+#   bd.mass_index = (bd.lean_body_mass/bd.height/bd.height*10000).round(2)     #LBMI(筋肉指数LBM/身長＾２
+#   bd.save
+
+#グラフが見えやすい
+  30.times do |i|
+    bd = Body.new(
+          user_id:1,
+          height:170.32,
+          weight:rand(64.00..69.00).round(2),
+          fat_percentage: rand(19.00..25.00).round(2),
+          created_at: DateTime.now - i
+        )
+    case i
+    when 0..10
+      bd.weight += 1
+      bd.fat_percentage += 1
+    when 11..20
+      bd.weight += 2
+      bd.fat_percentage += 2
+    when 21..25
+      bd.weight += 3
+      bd.fat_percentage += 4
+    when 26..30
+      bd.weight += 4
+      bd.fat_percentage += 4
+    end
+    #計算
+    bd.body_mass_index = (bd.weight/bd.height/bd.height*10000).round(2)        #BMI(ボディマス指数）,体重/身長^2,
+    bd.proper_weight = (bd.height**2*22/10000).round(2)                        #適性体重、身長^2*22
+    bd.lean_body_mass = (bd.weight*(100 - bd.fat_percentage)/100).round(2)     #LBM(除脂肪体重） 体重*(100-体脂肪率）/100
+    bd.mass_index = (bd.lean_body_mass/bd.height/bd.height*10000).round(2)     #LBMI(筋肉指数LBM/身長＾２
+    bd.save
 end
 
 

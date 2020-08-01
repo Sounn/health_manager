@@ -1,28 +1,21 @@
-<h1>一週間の計測結果一覧</h1>
-<%= link_to "一か間の計測結果", bodies_month_path %> 
-<%= link_to  "計測結果を入力", bodies_new_path %>
-<hr>
-<%= line_chart [
+<%= line_chart ([
     { name: "体重", data: @bodies.group(:created_at).sum(:weight)},
     { name: "適正体重", data: @bodies.group(:created_at).sum(:proper_weight)},
     { name: "LBM", data: @bodies.group(:created_at).sum(:lean_body_mass)},
-]%>
-<%= line_chart [
-      { name: "体脂肪率", data: @bodies.group(:created_at).sum(:fat_percentage)},
+    { name: "体脂肪率",coler:"red", data: @bodies.group(:created_at).sum(:fat_percentage)},
   { name: "BMI", data: @bodies.group(:created_at).sum(:body_mass_index)},
-  { name: "LBMI", data: @bodies.group(:created_at).sum(:mass_index)},
-  ]%>
-<hr>
+  { name: "LBMI", data: @bodies.group(:created_at).sum(:mass_index)}
+]), download: true, title: "一週間chart" %>
 <% @bodies.each do |b| %>
 <%= b.created_at %><%= link_to  "計測結果を編集", bodies_edit_path(b.id) %><br />
   <br />
-    身長:　　<%= b.height %>cm<br />
-    体重:　　<%= b.weight %>kg<br />
-    適正体重:　　<%= b.proper_weight %>kg<br />
-    体脂肪率: 　　<%= b.fat_percentage %>%<br />
-    BMI:　　<%= b.body_mass_index %><br />
-    LBM:　　 <%= b.lean_body_mass %><br />
-    LBMI:　　 <%= b.mass_index %><br />
+    <p>身長:　　<%= b.height %>cm</p>
+    <p>体重:　　<%= b.weight %>kg</p>
+    <p>適正体重:　　<%= b.proper_weight %>kg</p>
+    <p>体脂肪率: 　　<%= b.fat_percentage %>%</p>
+    <p>BMI:　　<%= b.body_mass_index %></p>
+    <p>除脂肪体重LBM:　　 <%= b.lean_body_mass %></p>
+    <p>筋肉指数(LBMI):　　 <%= b.mass_index %></p>
   <br />
   <hr>
 <% end %>

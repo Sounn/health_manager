@@ -1,48 +1,59 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="ui container custom-class">
+  <div class="ui placeholder piled segment">
+    <div class="ui two column very relaxed grid">
+      <div class="column">
+        <div class="ui form">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <h2  class= "field"><%= resource_name.to_s.humanize %>編集</h2>
+            <%= render "users/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+            <div class="field">
+              <%= f.label :"名前" %><br />
+              <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+            </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+            <div class="field">
+              <%= f.label :"Eメール" %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+            <div class="field">
+              <%= f.label :"パスワード" %> <i>(変更しない場合は空欄にしてください)</i><br />
+              <%= f.password_field :password, autocomplete: "new-password" %>
+              <% if @minimum_password_length %>
+                <br />
+                <em><%= @minimum_password_length %>文字以上が必要です</em>
+              <% end %>
+            </div>
+
+            <div class="field">
+              <%= f.label :"確認パスワード" %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :"現在のパスワード" %> <i>(変更内容を確認するために現在のパスワードが必要です)</i><br />
+              <%= f.password_field :current_password, autocomplete: "current-password" %>
+            </div>
+
+            <div class="field">
+              <%= f.submit("Update",class:"ui blue big submit button") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="middle aligned column">
+          <div class="field">
+            <h3>アカウントの消去</h3>
+
+            <p>Unhappy? <%= button_to("アカウントを消去する", registration_path(resource_name), data: { confirm: "本当によろしいですか？" }, method: :delete,class:"ui blue small submit button") %></p>
+          </div>
+        </div>
+    </div>
+    <div class="ui vertical divider">OR </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

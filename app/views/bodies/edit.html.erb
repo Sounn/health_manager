@@ -1,20 +1,26 @@
-<h1>計測結果を編集</h1>
-<%= form_for @body, url:bodies_update_path do |f| %>
-  <div class="field">
-    <%= f.label :"身長(m):" %><br />
-    <%= f.number_field :height, step: "0.01", in:80..300, maxlength:6 %><br />
-  </div>
+<div class="ui container custom-class">
+  <div class="ui placeholder piled segment">
+    <div class="ui form">
+      <h1 class="field">計測結果を編集</h1>
+      <%= form_for :body, url:bodies_create_path do |f| %>
+        <div class="field">
+          <%= f.label :"身長(m):" %><br />
+          <%= f.number_field :height, step: "0.01", in:80..300, maxlength:6 %><br />
+        </div>
 
-  <div class="field">
-    <%= f.label :"体重(kg):" %><br />
-    <%= f.number_field :weight, step: "0.01", in:20..200, maxlength:6 %><br />
+        <div class="field">
+          <%= f.label :"体重(kg):" %><br />
+          <%= f.number_field :weight, step: "0.01", in:20..200, maxlength:6  %><br />
+        </div>
+        <div class="field">
+          <%= f.label :"体脂肪率(%):" %><br />
+          <%= f.number_field :fat_percentage, step: "0.01", in:0..100, maxlength:6 %><br />
+        </div>
+        
+        <div class="field">
+          <%= f.submit("完了",class:"ui blue big submit button") %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :"体脂肪率(%):" %><br />
-    <%= f.number_field :fat_percentage, step: "0.01", in:0..100, maxlength:6 %><br />
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
