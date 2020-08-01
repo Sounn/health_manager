@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HealthManager</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="ui container custom-class">
+      <div class="ui placeholder piled segment">
+        <div class="ui two column very relaxed grid">
+          <div class="column">
+            <div class="ui form">
+              <%= yield %>
+            </div>
+          </div>
+          <div class="middle aligned column">
+            <div class="field">
+              <%= render "users/shared/links" %>
+            </div>
+          </div>
+        </div>
+        <div class="ui vertical divider">OR </div>
+      </div>
+    </div>
+  </body>
+</html>
+

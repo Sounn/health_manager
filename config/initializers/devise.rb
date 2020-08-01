@@ -265,7 +265,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # リソースをサインアウトする際に使用するデフォルトのHTTPメソッドです. デフォルトは :delete です。
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
 
   # ==> OmniAuth
   # 新しいOmniAuthプロバイダを追加します。設定の詳細についてはwikiをチェックしてください。

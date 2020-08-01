@@ -7,16 +7,40 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://code.highcharts.com/highcharts.js" %>
   </head>
 
   <body>
-    <% if user_signed_in? %>  
-      <%= link_to 'ユーザー編集', edit_user_registration_path %> |  
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> |
-    <% else %>  
-      <%= link_to "新規登録", new_user_registration_path %> |  
-      <%= link_to "ログイン", new_user_session_path %>  
-    <% end %>
-    <%= yield %>
+  <% if user_signed_in? %>
+    <div class="ui menu">
+        <div id="move-sidebar" class="item ui button"><i class="settings icon"></i></div>
+        <div class="item ">HealthManager</i></div>
+        <a class="item right  ui inverted teal button", method="delete", href=<%= destroy_user_session_path %>>ログアウト</a>
+    </div>
+    <div class="ui thin sidebar inverted vertical menu">
+      <div class="active item">メニュー</div>
+      <div class="item">
+        <div class="header">計測結果</div>
+        <div class="menu">
+          <a class="item" href=<%= bodies_new_path %>>計測結果を入力</a>
+          <a class="item" href=<%= root_path %>>一週間の計測結果</a>
+          <a class="item" href=<%= bodies_month_path %>>一か間の計測結果</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="header">ユーザー設定</div>
+        <div class="menu">
+          <a class=" item" href=<%= edit_user_registration_path %>>ユーザー編集</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      $('#move-sidebar').click(function() {
+        $('.ui.sidebar').sidebar('toggle');
+      });
+      $('.dropdown').dropdown();
+    </script> 
+  <% end %>
+  <%= yield %>
   </body>
 </html>
