@@ -9,7 +9,7 @@ class BodiesController < ApplicationController
 
   def new
     #新規作成
-    @body = Body.new
+    body = Body.new
   end
 
   def create
