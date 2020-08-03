@@ -11,6 +11,8 @@
 
   <body>
     <div class="ui container custom-class">
+    <%= render 'layouts/flash' %>
+    <%= render "users/shared/error_messages", resource: resource %>
       <div class="ui placeholder piled segment">
         <div class="ui two column very relaxed grid">
           <div class="column">
@@ -27,6 +29,7 @@
         <div class="ui vertical divider">OR </div>
       </div>
     </div>
+      <%= javascript_include_tag "semantic_ui.js" %>
   </body>
 </html>
 

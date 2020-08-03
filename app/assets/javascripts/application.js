@@ -16,5 +16,6 @@
 //= require activestorage
 // Loads all Semantic javascripts
 //= require semantic-ui
+//= require semantic-ui/sidebar
 //= require turbolinks
 //= require_tree .

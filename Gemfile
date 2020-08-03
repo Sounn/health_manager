@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 #ログイン機能
 gem 'devise'
 
+#日本語化
+gem 'rails-i18n'
+
 #chat作成
 gem "chartkick"
 

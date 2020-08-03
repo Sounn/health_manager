@@ -34,13 +34,9 @@
         </div>
       </div>
     </div>
-    <script>
-      $('#move-sidebar').click(function() {
-        $('.ui.sidebar').sidebar('toggle');
-      });
-      $('.dropdown').dropdown();
-    </script> 
   <% end %>
+  <%= render 'layouts/flash' %>
   <%= yield %>
+  <%= javascript_include_tag "semantic_ui.js" %>
   </body>
 </html>
