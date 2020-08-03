@@ -18,8 +18,10 @@ class BodiesController < ApplicationController
     if body.valid?
       body.set_calculation_columns
       body.save!
+      flash[:positive] = "計測結果を保存しました。"
       redirect_to root_path
     else
+      flash[:negative] = "計測結果の保存に失敗しました。入力内容をご確認ください。"
       render 'new'
     end
   end
