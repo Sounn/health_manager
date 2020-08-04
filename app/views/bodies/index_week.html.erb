@@ -6,16 +6,38 @@
   { name: "BMI", data: @bodies.group(:created_at).sum(:body_mass_index)},
   { name: "LBMI", data: @bodies.group(:created_at).sum(:mass_index)}
 ]), download: true, title: "一週間chart" %>
+<br />
+<div class = "ui center aligned grid">
+  <a class="ui blue button" href=<%= @path %>>今日の計測結果を<%= @flag %></a>
+</div>
+<br />
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>計測日</th>
+      <th>身長</th>
+      <th>体重</th>
+      <th>適正体重</th>
+      <th>体脂肪率</th>
+      <th>BMI</th>
+      <th>除脂肪体重LBM</th>
+      <th>筋肉指数LBMI</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
 <% @bodies.each do |b| %>
-<%= b.created_at %><%= link_to  "計測結果を編集", bodies_edit_path(b.id) %><br />
-  <br />
-    <p>身長:　　<%= b.height %>cm</p>
-    <p>体重:　　<%= b.weight %>kg</p>
-    <p>適正体重:　　<%= b.proper_weight %>kg</p>
-    <p>体脂肪率: 　　<%= b.fat_percentage %>%</p>
-    <p>BMI:　　<%= b.body_mass_index %></p>
-    <p>除脂肪体重LBM:　　 <%= b.lean_body_mass %></p>
-    <p>筋肉指数(LBMI):　　 <%= b.mass_index %></p>
-  <br />
-  <hr>
+  <tr>
+    <td data-label="計測日"><%= b.created_at.strftime('%F') %></td>
+    <td data-label="身長"><%= b.height %>cm</td>
+    <td data-label="体重"><%= b.weight %>kg</td>
+    <td data-label="適正体重"><%= b.proper_weight %>kg</td>
+    <td data-label="体脂肪率"><%= b.fat_percentage %>%</td>
+    <td data-label="BMI"><%= b.body_mass_index %></td>
+    <td data-label="除脂肪体重LBM"><%= b.lean_body_mass %>kg</td>
+    <td data-label="筋肉指数LBMI"><%= b.mass_index %></td>
+    <td data-label="編集"><%= link_to  "編集", bodies_edit_path(b.id) %></td>
+  </tr>
 <% end %>
+  </tbody>
+</table>

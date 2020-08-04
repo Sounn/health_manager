@@ -46,7 +46,7 @@ user.save!
           height:170.32,
           weight:rand(64.00..69.00).round(2),
           fat_percentage: rand(19.00..25.00).round(2),
-          created_at: DateTime.now - i
+          created_at: DateTime.now - (i+1).day
         )
     case i
     when 0..10

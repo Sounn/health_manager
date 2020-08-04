@@ -14,7 +14,7 @@
   <% if user_signed_in? %>
     <div class="ui menu">
         <div id="move-sidebar" class="item ui button"><i class="settings icon"></i></div>
-        <div class="item ">HealthManager</i></div>
+        <div class="item "><i class="heartbeat icon"></i>HealthManager</div>
         <a class="item right  ui inverted teal button", method="delete", href=<%= destroy_user_session_path %>>ログアウト</a>
     </div>
     <div class="ui thin sidebar inverted vertical menu">
@@ -22,7 +22,6 @@
       <div class="item">
         <div class="header">計測結果</div>
         <div class="menu">
-          <a class="item" href=<%= bodies_new_path %>>計測結果を入力</a>
           <a class="item" href=<%= root_path %>>一週間の計測結果</a>
           <a class="item" href=<%= bodies_month_path %>>一か間の計測結果</a>
         </div>
