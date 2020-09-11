@@ -18,14 +18,15 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)#ログイン後の
     body = Body.where(user_id:current_user.id).last
-    if body == nil
+    if body.nil?
       flash[:positive] = "計測結果を入力してください。"
-      bodies_new_path 
-    end
-    if body.created_at.strftime('%F') == Time.zone.now.strftime('%F')
-      root_path
+      bodies_new_path
     else
-      bodies_new_path #作成ページ
+      if body.created_at.strftime('%F') == Time.zone.now.strftime('%F')
+        root_path
+      else
+        bodies_new_path #作成ページ
+      end
     end
   end
 end
