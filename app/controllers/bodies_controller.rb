@@ -68,9 +68,13 @@ class BodiesController < ApplicationController
 
     def block_second_body
       body = Body.where(user_id: current_user.id).last
-      if body.created_at.strftime('%F') == Time.zone.now.strftime('%F')
-        flash[:warning] = "既に今日の計測結果は入力されています。"
-        redirect_to root_path#作成
+      if body.nil?
+        return
+      else
+        if body.created_at.strftime('%F') == Time.zone.now.strftime('%F')
+          flash[:warning] = "既に今日の計測結果は入力されています。"
+          redirect_to root_path#作成
+        end
       end
     end
 
